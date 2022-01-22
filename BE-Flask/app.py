@@ -1,5 +1,6 @@
+from distutils.log import debug
 from flask import Flask
-import sys
+import sys, os
 
 #aici vom importa fisierele la care lucram pentru a face diferitele elemente
 sys.path.insert(0,'/ButtonWater/ButtonWaterModel')
@@ -40,4 +41,5 @@ def makeWaterEmpty():
 	return 'make water empty'
 
 if __name__ == '__main__':
-	app.run()
+	os.environ['FLASK_ENV'] = 'development'
+	app.run(debug=True)
