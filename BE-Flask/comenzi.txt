@@ -13,6 +13,6 @@ Pentru a activa env-ul folositi comanda:
 Dupa ce ati activat env-ul prima data, dati "pip install flask"
 
 Dupa exporta main.py asa si seteaza-l ca flask app
-    export FLASK_APP=main.py
-    set FLASK_APP=main.py
+    export FLASK_APP=BE-Flask/main.py  //Daca nu merge comanda o scrieti direct pe urmatoarea
+    set FLASK_APP=BE-Flask/main.py
     flask run
