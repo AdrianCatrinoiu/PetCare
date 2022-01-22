@@ -1,0 +1,18 @@
+Pentru a rula:
+Instalati:
+ flask si virtualenv
+
+Pentru a genera env-ul folositi:
+    - Windows: py -3 -m venv venv
+    - Mac/Linux: python3 -m venv venv
+
+Pentru a activa env-ul folositi comanda:
+    Windows: venv\Scripts\activate
+    Linux/Mac: . venv/bin/activate
+
+Dupa ce ati activat env-ul prima data, dati "pip install flask"
+
+Dupa exporta main.py asa si seteaza-l ca flask app
+    export FLASK_APP=main.py
+    set FLASK_APP=main.py
+    flask run
