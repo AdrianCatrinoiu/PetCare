@@ -33,7 +33,8 @@ def stopWaterSensor():
 
 @app.route('/get-water-level')
 def getWaterLevel():
-	return petCareObject.makeWaterEmpty()
+	waterLevel = petCareObject.getWaterLevel()
+	return str(waterLevel)
 
 @app.route('/make-water-empty')
 def makeWaterEmpty():

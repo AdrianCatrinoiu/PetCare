@@ -22,7 +22,7 @@ class PetCareObject:
         self.__buttonWater.makeWaterEmpty()
     
     def getWaterLevel(self):
-        return str(self.__buttonWater.getWaterLevel())
+        return self.__buttonWater.getWaterLevel()
     
     def startSensor(self):
         self.__buttonWater.startSensor()
