@@ -5,10 +5,10 @@ import sys
 sys.path.insert(0,'/ButtonWater/ButtonWaterModel')
 
 #aici vom importa fisierele
-import ButtonWaterModel
+from objects import PetCareObject
 
 #aici vom declara obiectele
-buttonWater = ButtonWaterModel.ButtonWater()
+petCareObject = PetCareObject()
 
 app = Flask(__name__)
 
@@ -16,15 +16,28 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello World'
 
+"""
+	Rutele pentru butonul de apa
+"""
+
 @app.route('/start-water-sensor')
 def startWaterSensor():
-	buttonWater.startSensor()
+	petCareObject.startSensor()
 	return 'Water sensor is opened'
 
 @app.route('/stop-water-sensor')
 def stopWaterSensor():
-	buttonWater.stopSensor()
+	petCareObject.stopSensor()
 	return 'Water sensor is closed'
+
+@app.route('/get-water-level')
+def getWaterLevel():
+	return petCareObject.makeWaterEmpty()
+
+@app.route('/make-water-empty')
+def makeWaterEmpty():
+	petCareObject.makeWaterEmpty()
+	return 'make water empty'
 
 if __name__ == '__main__':
 	app.run()
