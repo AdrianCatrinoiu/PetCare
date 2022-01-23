@@ -8,6 +8,14 @@ import ButtonForBellModel
 
 class ButtonForFeeding:
     def __init__(self, feedingPush,feedingTimer,bellTimer, feedingType):
+        """
+            feedingPush -> int, a value between 0 and 100 to let water or food in bowl
+            feedingTimer -> set a value in seconds for feeding interval
+            bellTimer -> set a value in seconds how time the bell sings
+            feedingType -> Water or Food
+        """
+        feedingPush,feedingTimer,bellTimer = self.__validateData(feedingPush,feedingTimer,bellTimer)
+
         self.__bellButton = ButtonForBellModel.ButtonForBell(bellTimer)
         self.__feedingType = feedingType
         self.__feedingLevel = 0
@@ -15,6 +23,21 @@ class ButtonForFeeding:
         self.__feedingPush = feedingPush
         self.__feedingTimer = feedingTimer
         self.__isActive = False
+
+    def __validateData(self,feedingPush,feedingTimer,bellTimer):
+        if feedingPush <= 0:
+            feedingPush = 1
+        if feedingPush > 100:
+            feedingPush = 100
+        if feedingTimer < 0:
+            feedingTimer = 1
+        if feedingTimer > 100:
+            feedingTimer = 100
+        if bellTimer < 0:
+            bellTimer = 1
+        if bellTimer > 10:
+            bellTimer = 10
+        return (feedingPush,feedingTimer,bellTimer)
     
     def __verifyFeedingLevel(self):
         return self.__feedingLevel + self.__feedingPush <= self.__maxfeedingLevel
