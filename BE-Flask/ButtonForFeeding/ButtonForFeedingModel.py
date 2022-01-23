@@ -16,7 +16,7 @@ class ButtonForFeeding:
         """
         feedingPush,feedingTimer,bellTimer = self.__validateData(feedingPush,feedingTimer,bellTimer)
 
-        self.__bellButton = ButtonForBellModel.ButtonForBell(bellTimer)
+        self.__bellButton = ButtonForBellModel.ButtonForBell(bellTimer, feedingType)
         self.__feedingType = feedingType
         self.__feedingLevel = 0
         self.__maxfeedingLevel = 100
