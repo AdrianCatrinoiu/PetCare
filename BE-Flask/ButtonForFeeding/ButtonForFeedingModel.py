@@ -1,8 +1,14 @@
 import time
 import threading
+import sys, os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../ButtonForBell'))
+
+import ButtonForBellModel
 
 class ButtonForFeeding:
-    def __init__(self, feedingPush,feedingTimer, feedingType):
+    def __init__(self, feedingPush,feedingTimer,bellTimer, feedingType):
+        self.__bellButton = ButtonForBellModel.ButtonForBell(bellTimer)
         self.__feedingType = feedingType
         self.__feedingLevel = 0
         self.__maxfeedingLevel = 100
@@ -22,6 +28,8 @@ class ButtonForFeeding:
         else:
             self.__feedingLevel = self.__maxfeedingLevel
             self.__isActive = False
+        
+        self.__bellButton.startSinging()
     
     def getFeedingLevel(self):
         return self.__feedingLevel

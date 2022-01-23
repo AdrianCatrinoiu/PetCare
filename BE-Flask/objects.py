@@ -9,8 +9,8 @@ import ButtonForFeedingModel
 #vom crea un obiect mare ce va include toate obiectele noastre si il vom folosi in main.py
 class PetCareObject:
     def __init__(self):
-        self.__buttonWater = ButtonForFeedingModel.ButtonForFeeding(10,5,'Water')
-        self.__buttonFood = ButtonForFeedingModel.ButtonForFeeding(25,20,'Food')
+        self.__buttonWater = ButtonForFeedingModel.ButtonForFeeding(10,5,1,'Water')
+        self.__buttonFood = ButtonForFeedingModel.ButtonForFeeding(25,20,2,'Food')
 
     """
     Aici vor fi functiile pentru senzorul de apa si pentru buton

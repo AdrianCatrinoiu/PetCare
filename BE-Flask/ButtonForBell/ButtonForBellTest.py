@@ -17,7 +17,7 @@ class ButtonBellTest(test.TestCase):
             Aceasta functie ar trebui sa verifice daca clopotelul functioneaza
         """
         self.bellButton.startSinging()
-        time.sleep(1)
+        time.sleep(2)
         self.assertEqual(self.bellButton.singingStatus(), False, "The ring is not singing")
 
     
