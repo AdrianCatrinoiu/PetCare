@@ -1,10 +1,8 @@
-from ast import While
 from flask import Flask
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 from flask_bootstrap import Bootstrap
 import os
-from objects import PetCareObject
 from threading import Thread
 import time
 import json
@@ -15,8 +13,6 @@ import status_api
 import status
 import food
 import water
-
-petCareObject = PetCareObject()
 
 
 thread = None
@@ -56,90 +52,35 @@ def background_thread():
 
 
 def create_app():
-    global app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-    )
+	global app
+	app = Flask(__name__, instance_relative_config=True)
+	app.config.from_mapping(
+		SECRET_KEY='dev',
+	)
 
-    @app.route('/')
-    def hello_world():
-        # Here I chose to start the periodic publishing after the root endpoint is called.
-        # It's not the best nor cleaneste approach, but will have to refactor it.
-        # What is important is that the background_thread function is called on
-        # a separate thread, so that publishing can happen while simultaneously
-        # HTTP endpoints are also functional.
+	@app.route('/')
+	def hello_world():
+		# Here I chose to start the periodic publishing after the root endpoint is called.
+		# It's not the best nor cleaneste approach, but will have to refactor it.
+		# What is important is that the background_thread function is called on
+		# a separate thread, so that publishing can happen while simultaneously
+		# HTTP endpoints are also functional.
 
-        global thread
-        if thread is None:
-            thread = Thread(target=background_thread)
-            thread.daemon = True
-            thread.start()
-        return 'Hello World!'
+		global thread
+		if thread is None:
+			thread = Thread(target=background_thread)
+			thread.daemon = True
+			thread.start()
+		return 'Hello World!'
 
-    db.init_app(app)
-    app.register_blueprint(environment.bp)
-    app.register_blueprint(food.bp)
-    app.register_blueprint(status_api.bp)
-    app.register_blueprint(water.bp)
-    socketio = SocketIO(app)
-    bootstrap = Bootstrap(app)
-
-    @app.route('/start-water-sensor')
-    def startWaterSensor():
-        petCareObject.startWaterSensor()
-        mqtt.publish('water/level', str(petCareObject.getWaterLevel()))
-        return 'Water sensor is opened'
-
-    @app.route('/stop-water-sensor')
-    def stopWaterSensor():
-        petCareObject.stopWaterSensor()
-        mqtt.publish('water/level', str(petCareObject.getWaterLevel()))
-        return 'Water sensor is closed'
-
-    @app.route('/get-water-level')
-    def getWaterLevel():
-        mqtt.publish('water/level', str(petCareObject.getWaterLevel()))
-        return f'Your water level is {petCareObject.getWaterLevel()}.'
-
-    @app.route('/make-water-empty')
-    def makeWaterEmpty():
-        petCareObject.makeWaterEmpty()
-        return 'make water empty'
-
-    """
-        Buton pentru hranire
-    """
-
-    @app.route('/start-food-sensor')
-    def startFoodSensor():
-        petCareObject.startFoodSensor()
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return 'Food sensor is opened'
-
-    @app.route('/stop-food-sensor')
-    def stopFoodSensor():
-        petCareObject.stopFoodSensor()
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return 'Food sensor is closed'
-
-    @app.route('/get-food-level')
-    def getFoodLevel():
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return f'Your food level is {petCareObject.getFoodLevel()}.'
-
-    @app.route('/make-food-empty')
-    def makeFoodEmpty():
-        petCareObject.makeFoodEmpty()
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return 'make food empty'
-
-    return app
-
-
-"""
-	Rutele pentru butonul de apa
-"""
+	db.init_app(app)
+	app.register_blueprint(environment.bp)
+	app.register_blueprint(food.bp)
+	app.register_blueprint(status_api.bp)
+	app.register_blueprint(water.bp)
+	socketio = SocketIO(app)
+	bootstrap = Bootstrap(app)
+	return app
 
 
 def mqttClient():
