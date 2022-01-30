@@ -22,7 +22,7 @@ class ButtonForFeeding:
         self.__maxfeedingLevel = 100
         self.__feedingPush = feedingPush
         self.__feedingTimer = feedingTimer
-        self.__isActive = False
+        self.__isActive = True
 
     def __validateData(self,feedingPush,feedingTimer,bellTimer):
         if feedingPush <= 0:
