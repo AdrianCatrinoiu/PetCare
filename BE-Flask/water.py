@@ -3,12 +3,14 @@ from flask import (
 )
 import os,sys
 from db import get_db
+from db_v2 import DB
 
 bp = Blueprint('water', __name__, url_prefix='/water')
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 import ButtonForFeedingModel
 
+db = DB()
 waterButton =  ButtonForFeedingModel.ButtonForFeeding(10,5,1,'Water')
 
 def get_blueprint():
@@ -18,33 +20,34 @@ def get_blueprint():
 
 @bp.route('/', methods=('GET', 'POST'))
 def set_water():
-    if request.method == 'POST':
-        water = request.form['level']
+    # if request.method == 'POST':
+    #     water = request.form['level']
 
-        if not water:
-            return jsonify({'status': 'Water is required.'}), 403
+    #     if not water:
+    #         return jsonify({'status': 'Water is required.'}), 403
 
-        db = get_db()
-        db.execute(
-            'INSERT INTO water (level)'
-            ' VALUES (?)',
-            (water,)
-        )
-        db.commit()
+    #     db = get_db()
+    #     db.execute(
+    #         'INSERT INTO water (level)'
+    #         ' VALUES (?)',
+    #         (water,)
+    #     )
+    #     db.commit()
 
-    check = get_db().execute(
-        'SELECT id, changed_date, level'
-        ' FROM water'
-        ' ORDER BY changed_date DESC'
-    ).fetchone()
-    return jsonify({
-        'status': 'Water succesfully recorded/retrieved',
-        'data': {
-            'id': check['id'],
-            'changed_date': check['changed_date'],
-            'level': check['level']
-        }
-    }), 200
+    # check = get_db().execute(
+    #     'SELECT id, changed_date, level'
+    #     ' FROM water'
+    #     ' ORDER BY changed_date DESC'
+    # ).fetchone()
+    # return jsonify({
+    #     'status': 'Water succesfully recorded/retrieved',
+    #     'data': {
+    #         'id': check['id'],
+    #         'changed_date': check['changed_date'],
+    #         'level': check['level']
+    #     }
+    # }), 200
+    return db.getTableData('water'), 200
 
 @bp.route('/start-water-sensor',methods=('GET', 'POST'))
 def startSensor():
