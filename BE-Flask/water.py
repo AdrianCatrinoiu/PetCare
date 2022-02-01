@@ -10,7 +10,7 @@ bp = Blueprint('water', __name__, url_prefix='/water')
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 import ButtonForFeedingModel
 
-db = DB()
+db2 = DB()
 waterButton =  ButtonForFeedingModel.ButtonForFeeding(10,5,1,'Water')
 
 def get_blueprint():
@@ -47,7 +47,7 @@ def set_water():
     #         'level': check['level']
     #     }
     # }), 200
-    return db.getTableData('water'), 200
+    return db2.getTableData('water'), 200
 
 @bp.route('/start-water-sensor',methods=('GET', 'POST'))
 def startSensor():

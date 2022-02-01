@@ -6,7 +6,7 @@ from db import get_db
 from db_v2 import DB
 
 bp = Blueprint('food', __name__, url_prefix='/food')
-db = DB()
+db2 = DB()
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 import ButtonForFeedingModel
@@ -44,7 +44,7 @@ def set_food():
     #         'level': check['level']
     #     }
     # }), 200
-    return db.getTableData('food'),200
+    return db2.getTableData('food'),200
 
 
 @bp.route('/start-food-sensor',methods=('GET', 'POST'))

@@ -20,7 +20,7 @@ class ButtonForBell:
 
     def __singing(self):
        self.__isActive = True
-       if self.__bellType == 'Food' or self.__bellType == 'Water' and self.timer.getSoundState():
+       if self.__bellType == 'Food' or self.__bellType == 'Water' and not self.timer.getSoundState():
            playsound(os.path.join(__location__, 'sound.wav'))
        time.sleep(self.__bellTimer)
        self.__isActive = False

@@ -6,11 +6,11 @@ class SoundControl:
 
     @classmethod
     def makeNoise(cls):
-        cls.__isSilence = True
+        cls.__isSilence = False
     
     @classmethod
     def makeSilence(cls):
-        cls.__isSilence = False
+        cls.__isSilence = True
     
     @classmethod
     def getSoundStatus(cls):

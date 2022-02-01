@@ -71,11 +71,9 @@ def create_app():
     app.config.from_mapping(
         SECRET_KEY='dev',
     )
-    app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
-    ### end swagger specific ###
-
-
-    app.register_blueprint(water.get_blueprint())
+    # app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
+    # ### end swagger specific ###
+    # app.register_blueprint(water.get_blueprint())
 
     @app.route('/')
     def hello_world():
