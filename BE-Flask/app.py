@@ -1,10 +1,9 @@
-from ast import While
 from flask import Flask
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 from flask_bootstrap import Bootstrap
+from flask_swagger_ui import get_swaggerui_blueprint
 import os
-from objects import PetCareObject
 from threading import Thread
 import time
 import json
@@ -16,10 +15,21 @@ import status
 import food
 import water
 
-petCareObject = PetCareObject()
-
 
 thread = None
+socketio = None
+
+
+### swagger specific ###
+SWAGGER_URL = '/swagger'
+API_URL = '/swagger.json'
+SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "PetCare"
+    }
+)
 
 
 def create_mqtt_app():
@@ -56,20 +66,18 @@ def background_thread():
 
 
 def create_app():
-    global app
+    global app, socketio
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
     )
+    app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
+    ### end swagger specific ###
+
+    app.register_blueprint(water.get_blueprint())
 
     @app.route('/')
     def hello_world():
-        # Here I chose to start the periodic publishing after the root endpoint is called.
-        # It's not the best nor cleaneste approach, but will have to refactor it.
-        # What is important is that the background_thread function is called on
-        # a separate thread, so that publishing can happen while simultaneously
-        # HTTP endpoints are also functional.
-
         global thread
         if thread is None:
             thread = Thread(target=background_thread)
@@ -84,68 +92,13 @@ def create_app():
     app.register_blueprint(water.bp)
     socketio = SocketIO(app)
     bootstrap = Bootstrap(app)
-
-    @app.route('/start-water-sensor', )
-    def startWaterSensor():
-        petCareObject.startWaterSensor()
-        mqtt.publish('water/level', str(petCareObject.getWaterLevel()))
-        return 'Water sensor is opened'
-
-    @app.route('/stop-water-sensor')
-    def stopWaterSensor():
-        petCareObject.stopWaterSensor()
-        mqtt.publish('water/level', str(petCareObject.getWaterLevel()))
-        return 'Water sensor is closed'
-
-    @app.route('/get-water-level')
-    def getWaterLevel():
-        mqtt.publish('water/level', str(petCareObject.getWaterLevel()))
-        return f'Your water level is {petCareObject.getWaterLevel()}.'
-
-    @app.route('/make-water-empty')
-    def makeWaterEmpty():
-        petCareObject.makeWaterEmpty()
-        return 'make water empty'
-
-    """
-        Buton pentru hranire
-    """
-
-    @app.route('/start-food-sensor')
-    def startFoodSensor():
-        petCareObject.startFoodSensor()
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return 'Food sensor is opened'
-
-    @app.route('/stop-food-sensor')
-    def stopFoodSensor():
-        petCareObject.stopFoodSensor()
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return 'Food sensor is closed'
-
-    @app.route('/get-food-level')
-    def getFoodLevel():
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return f'Your food level is {petCareObject.getFoodLevel()}.'
-
-    @app.route('/make-food-empty')
-    def makeFoodEmpty():
-        petCareObject.makeFoodEmpty()
-        mqtt.publish('food/level', str(petCareObject.getFoodLevel()))
-        return 'make food empty'
-
     return app
-
-
-"""
-	Rutele pentru butonul de apa
-"""
 
 
 def mqttClient():
     mqttClient = mqtt.Client()
     mqttClient.username_pw_set('', '')
-    topics = ['food/level', 'water/level']
+    topics = ['food/level', 'water/level', 'thermometer/level']
 
     def on_message(client, userdata, msg):
         print('###################')
@@ -160,6 +113,7 @@ def mqttClient():
 
 
 def run_socketio_app():
+    global socketio
     create_app()
     socketio = SocketIO(app)
     bootstrap = Bootstrap(app)
