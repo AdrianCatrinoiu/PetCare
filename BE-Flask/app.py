@@ -17,9 +17,8 @@ import water
 
 
 thread = None
+socketio = None
 
-
-APP = Flask(__name__)
 
 ### swagger specific ###
 SWAGGER_URL = '/swagger'
@@ -31,11 +30,6 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
         'app_name': "PetCare"
     }
 )
-APP.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
-### end swagger specific ###
-
-
-APP.register_blueprint(water.get_blueprint())
 
 
 def create_mqtt_app():
@@ -72,35 +66,34 @@ def background_thread():
 
 
 def create_app():
-	global app
-	app = Flask(__name__, instance_relative_config=True)
-	app.config.from_mapping(
-		SECRET_KEY='dev',
-	)
+    global app, socketio
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_mapping(
+        SECRET_KEY='dev',
+    )
+    app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
+    ### end swagger specific ###
 
-	@app.route('/')
-	def hello_world():
-		# Here I chose to start the periodic publishing after the root endpoint is called.
-		# It's not the best nor cleaneste approach, but will have to refactor it.
-		# What is important is that the background_thread function is called on
-		# a separate thread, so that publishing can happen while simultaneously
-		# HTTP endpoints are also functional.
 
-		global thread
-		if thread is None:
-			thread = Thread(target=background_thread)
-			thread.daemon = True
-			thread.start()
-		return 'Hello World!'
+    app.register_blueprint(water.get_blueprint())
 
-	db.init_app(app)
-	app.register_blueprint(environment.bp)
-	app.register_blueprint(food.bp)
-	app.register_blueprint(status_api.bp)
-	app.register_blueprint(water.bp)
-	socketio = SocketIO(app)
-	bootstrap = Bootstrap(app)
-	return app
+    @app.route('/')
+    def hello_world():
+        global thread
+        if thread is None:
+            thread = Thread(target=background_thread)
+            thread.daemon = True
+            thread.start()
+        return 'Hello World!'
+
+    db.init_app(app)
+    app.register_blueprint(environment.bp)
+    app.register_blueprint(food.bp)
+    app.register_blueprint(status_api.bp)
+    app.register_blueprint(water.bp)
+    socketio = SocketIO(app)
+    bootstrap = Bootstrap(app)
+    return app
 
 
 def mqttClient():
@@ -121,6 +114,7 @@ def mqttClient():
 
 
 def run_socketio_app():
+    global socketio
     create_app()
     socketio = SocketIO(app)
     bootstrap = Bootstrap(app)

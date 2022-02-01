@@ -6,34 +6,39 @@ class DB:
 
     @classmethod
     def createTables(cls):
-        cls.c.execute(''' 
-            CREATE TABLE IF NOT EXISTS post (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            author_id INTEGER NOT NULL,
-            created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            title TEXT NOT NULL,
-            body TEXT NOT NULL,
-            FOREIGN KEY (author_id) REFERENCES user (id)
-            );
+        try:
+            cls.c.execute('''
+                CREATE TABLE IF NOT EXISTS post (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                author_id INTEGER NOT NULL,
+                created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                title TEXT NOT NULL,
+                body TEXT NOT NULL,
+                FOREIGN KEY (author_id) REFERENCES user (id)
+                );''')
 
-            CREATE TABLE IF NOT EXISTS temperature (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            level REAL NOT NULL
-            );
+            cls.c.execute('''
+                CREATE TABLE IF NOT EXISTS temperature (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                level REAL NOT NULL
+                );''')
+            
+            cls.c.execute('''
+                CREATE TABLE  IF NOT EXISTS food (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                changed_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                level REAL NOT NULL
+                );''')
 
-            CREATE TABLE  IF NOT EXISTS food (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            changed_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            level REAL NOT NULL
-            );
-
-            CREATE TABLE IF NOT EXISTS water (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            changed_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            level REAL NOT NULL
-            );
-        ''')
+            cls.c.execute('''
+                CREATE TABLE IF NOT EXISTS water (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                changed_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                level REAL NOT NULL
+                );''')
+        except:
+            pass
 
     @classmethod
     def addInTable(cls,table, data):
