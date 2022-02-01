@@ -1,5 +1,9 @@
-import time
+import time, sys, os
 import threading
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../TimerForSleeping'))
+
+from TimerForSleepingModel import Timer
 
 
 class ButtonForBell:
@@ -7,6 +11,7 @@ class ButtonForBell:
         self.__bellTimer = bellTimer
         self.__feedingType = feedingType
         self.__isActive = False
+        self.timer = Timer()
 
     def __singing(self):
         self.__isActive = True
