@@ -14,27 +14,30 @@ class SoundControl:
     
     @classmethod
     def getSoundStatus(cls):
+        print(cls.__isSilence)
         return cls.__isSilence
 
 class Timer:
-    def __init__(self):
+    def __init__(self, timer=60):
+        self.__timer = timer
+        self.soundControl = SoundControl()
         self.__isActivated = False
     
     def startTimer(self):
-        SoundControl.makeSilence()
+        self.soundControl.makeSilence()
         if self.__isActivated:
             return 
         self.__isActivated = True
-        Thread(self.__startTimer).start()
+        Thread(target = self.__startTimer,args= ()).start()
 
     def __startTimer(self):
-        sleep(60*self.__timer)
+        sleep(self.__timer)
         self.__isActivated = False
     
     def makeNoise(self):
         self.__isActivated = False
-        SoundControl.makeNoise()
+        self.soundControl.makeNoise()
     
-    def getSoundState(self):
-        return SoundControl.getSoundStatus()
+    def getSoundStatus(self):
+        return self.soundControl.getSoundStatus()
         
