@@ -1,0 +1,7 @@
+{
+  "python.analysis.extraPaths": [
+    "./BE-Flask/ButtonForBell",
+    "./BE-Flask/ButtonForFeeding",
+    "./BE-Flask/ButtonForThermometer"
+  ]
+}
