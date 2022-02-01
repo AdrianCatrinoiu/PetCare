@@ -34,4 +34,7 @@ class Timer:
     def makeNoise(self):
         self.__isActivated = False
         SoundControl.makeNoise()
+    
+    def getSoundState(self):
+        return SoundControl.getSoundStatus()
         
