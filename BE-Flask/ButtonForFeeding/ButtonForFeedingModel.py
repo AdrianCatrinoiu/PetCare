@@ -38,7 +38,7 @@ def addInDb(feedLevel, feedingType):
         print('db doesn`t exist.')
 
 class ButtonForFeeding:
-    def __init__(self, feedingPush,feedingTimer,bellTimer, feedingType):
+    def __init__(self, feedingPush, feedingTimer, bellTimer, feedingType):
         """
             feedingPush -> int, a value between 0 and 100 to let water or food in bowl
             feedingTimer -> set a value in seconds for feeding interval

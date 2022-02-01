@@ -106,7 +106,7 @@ def create_app():
 def mqttClient():
     mqttClient = mqtt.Client()
     mqttClient.username_pw_set('', '')
-    topics = ['food/level', 'water/level']
+    topics = ['food/level', 'water/level', 'thermometer/level']
 
     def on_message(client, userdata, msg):
         print('###################')
