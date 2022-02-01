@@ -11,6 +11,11 @@ import ButtonForFeedingModel
 
 waterButton =  ButtonForFeedingModel.ButtonForFeeding(10,5,1,'Water')
 
+def get_blueprint():
+    """Return the blueprint for the main app module"""
+    return bp
+
+
 @bp.route('/', methods=('GET', 'POST'))
 def set_water():
     if request.method == 'POST':

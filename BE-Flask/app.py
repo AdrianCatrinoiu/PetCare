@@ -2,6 +2,7 @@ from flask import Flask
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
 from flask_bootstrap import Bootstrap
+from flask_swagger_ui import get_swaggerui_blueprint
 import os
 from threading import Thread
 import time
@@ -16,6 +17,25 @@ import water
 
 
 thread = None
+
+
+APP = Flask(__name__)
+
+### swagger specific ###
+SWAGGER_URL = '/swagger'
+API_URL = '/swagger.json'
+SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "PetCare"
+    }
+)
+APP.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
+### end swagger specific ###
+
+
+APP.register_blueprint(water.get_blueprint())
 
 
 def create_mqtt_app():

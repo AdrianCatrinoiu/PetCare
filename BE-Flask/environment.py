@@ -1,6 +1,4 @@
-from flask import (
-    Blueprint, request, jsonify
-)
+from flask import Blueprint, request, jsonify
 
 from db import get_db
 
