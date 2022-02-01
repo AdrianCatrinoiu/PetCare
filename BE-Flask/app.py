@@ -85,7 +85,7 @@ def create_app():
     socketio = SocketIO(app)
     bootstrap = Bootstrap(app)
 
-    @app.route('/start-water-sensor')
+    @app.route('/start-water-sensor', )
     def startWaterSensor():
         petCareObject.startWaterSensor()
         mqtt.publish('water/level', str(petCareObject.getWaterLevel()))
