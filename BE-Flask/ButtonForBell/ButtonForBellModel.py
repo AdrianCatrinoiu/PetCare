@@ -14,7 +14,6 @@ from TimerForSleepingModel import Timer
 class ButtonForBell:
     def __init__(self ,bellTimer,bellType):
         self.__bellTimer = bellTimer
-        self.__feedingType = feedingType
         self.__isActive = False
         self.timer = Timer()
         self.__bellType = bellType
