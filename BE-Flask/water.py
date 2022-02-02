@@ -44,6 +44,6 @@ def makeFeedingEmpty():
     return 'make water empty',200
 
 @bp.route('/push-water-manual',methods=('GET', 'POST'))
-def makeFeedingEmpty():
+def pushManuel():
     waterButton.pushManual()
     return 'Water was pushed',200

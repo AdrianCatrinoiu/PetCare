@@ -120,4 +120,5 @@ class ButtonForFeeding:
             self.__isActive = False
         self.__addFeeding()
         if isActive:
+            time.sleep(self.__feedingTimer)
             self.startSensor()

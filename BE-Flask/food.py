@@ -42,6 +42,6 @@ def makeFeedingEmpty():
     return 'make food empty',200
 
 @bp.route('/push-food-manual',methods=('GET', 'POST'))
-def makeFeedingEmpty():
+def pushManuel():
     foodButton.pushManual()
     return 'Food was pushed',200
