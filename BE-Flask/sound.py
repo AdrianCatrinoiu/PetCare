@@ -14,14 +14,14 @@ timer = TimerForSleepingModel.Timer(60)
 @bp.route('/make-silence', methods=('GET', 'POST'))
 def makeSilence():
     timer.makeSilence()
-    return 200
+    return 'Make silence',200
 
 @bp.route('/make-noise', methods=('GET', 'POST'))
 def makeNoise():
     timer.makeNoise()
-    return 200
+    return 'Make noise',200
 
 @bp.route('/start-timer-for-silence', methods=('GET', 'POST'))
 def startTimer():
     timer.startTimer()
-    return 200
+    return 'Start timer to making silence',200
