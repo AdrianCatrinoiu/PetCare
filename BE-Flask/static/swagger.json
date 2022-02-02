@@ -1,0 +1,283 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server PetCare server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "version": "1.0.0",
+    "title": "Swagger PetCare",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "petstore.swagger.io",
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "water"
+    },
+    {
+      "name": "temperature"
+    },
+    {
+      "name": "food"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/water": {
+      "post": {
+        "tags": [
+          "water"
+        ],
+        "summary": "Add a new water",
+        "description": "",
+        "operationId": "addWater",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Water"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "water"
+        ],
+        "summary": "Find water",
+        "description": "",
+        "operationId": "getWater",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Water"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/temperature": {
+      "post": {
+        "tags": [
+          "temperature"
+        ],
+        "summary": "Add a new temperature",
+        "description": "",
+        "operationId": "addTemperature",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Temperature object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "temperature"
+        ],
+        "summary": "Find temperature",
+        "description": "",
+        "operationId": "getTemperature",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Temperature"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/food": {
+      "post": {
+        "tags": [
+          "food"
+        ],
+        "summary": "Add a new food",
+        "description": "",
+        "operationId": "addFood",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Food object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "food"
+        ],
+        "summary": "Find food",
+        "description": "",
+        "operationId": "getFood",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Food": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "changed_data": {
+          "type": "string",
+          "format": "CURRENT_TIMESTAMP"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Temperature"
+      }
+    },
+    "Temperature": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "CURRENT_TIMESTAMP"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Temperature"
+      }
+    },
+    "Water": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "changed_data": {
+          "type": "string",
+          "format": "CURRENT_TIMESTAMP"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Water"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
