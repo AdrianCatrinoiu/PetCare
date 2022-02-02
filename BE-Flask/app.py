@@ -14,6 +14,7 @@ import status_api
 import status
 import food
 import water
+import sound
 
 
 thread = None
@@ -89,6 +90,7 @@ def create_app():
     app.register_blueprint(food.bp)
     app.register_blueprint(status_api.bp)
     app.register_blueprint(water.bp)
+    app.register_blueprint(sound.bp)
     socketio = SocketIO(app)
     bootstrap = Bootstrap(app)
     return app

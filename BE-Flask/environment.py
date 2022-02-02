@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify
 
 import os,sys
 from db import get_db
+from db_v2 import DB
+db2 = DB()
 
 bp = Blueprint('environment', __name__, url_prefix='/')
 
@@ -10,37 +12,11 @@ import ButtonForThermometerModel
 
 thermometerButton = ButtonForThermometerModel.ButtonForThermometer(0.02)
 
-@bp.route('/set-temperature', methods=['GET','POST'])
-def set_temperature():
-    if request.method == 'POST':
-        temp = request.form['temp']
-        error = None
-
-        if not temp:
-            return jsonify({'status': 'Temp is required.'}), 403
-
-        thermometerButton.setTempHardware(temp)
-        db = get_db()
-        db.execute(
-            'INSERT INTO temperature (level)'
-            ' VALUES (?)',
-            (temp,)
-        )
-        db.commit()
-
-        check = get_db().execute(
-            'SELECT id, timestamp, level'
-            ' FROM temperature'
-            ' ORDER BY timestamp DESC'
-        ).fetchone()
-        return jsonify({
-            'status': 'Temperature succesfully recorded',
-            'data': {
-                'id': check['id'],
-                'timestamp': check['timestamp'],
-                'level': check['level']
-            }
-        }), 200
+@bp.route('/get-temperature', methods=['GET','POST'])
+def get_temperature():
+    return jsonify({
+        'table': 'Temperature',
+        'rows':db2.getTableData('temperature')}), 200
 
 @bp.route('/start-thermometer',methods=('GET', 'POST'))
 def startSensor():
@@ -52,7 +28,7 @@ def stopSensor():
     thermometerButton.stopSensor()
     return 'Thermometer stopped',200
 
-@bp.route('/get-temperature',methods=('GET', 'POST'))
+@bp.route('/get-current-temperature',methods=('GET', 'POST'))
 def getFeedingLevel():
     temperature = thermometerButton.getTemp()
     return f'Current temperature is: { temperature }C',200
