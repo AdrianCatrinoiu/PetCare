@@ -1,0 +1,61 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "sean",
+    "version": "1.0.0",
+    "title": "PetCare",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Water Request",
+      "description": "Example API for requesting and return water requests"
+    }
+  ],
+  "paths": {
+    "/water": {
+      "get": {
+        "tags": ["Water Request"],
+        "summary": "Returns waterRequests",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schema/waters"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schema": {
+      "id": {
+        "properties": {
+          "uuid": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "waters": {
+      "type": "object",
+      "properties": {
+        "water": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/components/schema/water"
+          }
+        }
+      }
+    }
+  }
+}
