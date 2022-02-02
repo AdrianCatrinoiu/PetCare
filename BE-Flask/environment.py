@@ -32,3 +32,12 @@ def stopSensor():
 def getFeedingLevel():
     temperature = thermometerButton.getTemp()
     return f'Current temperature is: { temperature }C',200
+
+@bp.route('/set-current-temperature',methods=('GET', 'POST'))
+def setFeedingLevel():
+    if request.method == 'POST':
+        data = request.form['temp']
+        temperature = thermometerButton.setTempHardware(data)
+        return f'Current temperature is: { temperature }C',200
+    else:
+        return 'Wrong request',404

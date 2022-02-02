@@ -42,3 +42,4 @@ class ButtonForThermometer:
     def setTempHardware(self, temp):
         if self.__isActive:
             self.__tempHardware = temp
+            return temp

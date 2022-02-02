@@ -293,7 +293,7 @@
 			"name": "Environment",
 			"item": [
 				{
-					"name": "Get all temperatures",
+					"name": "Get current temperature",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -315,7 +315,7 @@
 					"response": []
 				},
 				{
-					"name": "Get current temperature",
+					"name": "Get all temperatures",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -331,6 +331,45 @@
 							"port": "5000",
 							"path": [
 								"get-temperature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set current temperature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "temp",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/set-current-temperature",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"set-current-temperature"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
