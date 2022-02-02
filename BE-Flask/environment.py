@@ -10,7 +10,7 @@ bp = Blueprint('environment', __name__, url_prefix='/')
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForThermometer'))
 import ButtonForThermometerModel
 
-thermometerButton = ButtonForThermometerModel.ButtonForThermometer(20,23)
+thermometerButton = ButtonForThermometerModel.ButtonForThermometer(5,23)
 
 @bp.route('/get-temperature', methods=['GET','POST'])
 def get_temperature():
@@ -37,6 +37,7 @@ def getFeedingLevel():
 def setFeedingLevel():
     if request.method == 'POST':
         data = request.form['temp']
+        thermometerButton.setTempHardware(data)
         temperature = thermometerButton.setTempHardware(data)
         return f'Current temperature is: { temperature }C',200
     else:

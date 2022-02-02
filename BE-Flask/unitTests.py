@@ -3,6 +3,7 @@ import sys, os, unittest as test
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForBell'))
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 sys.path.append(os.path.join(os.path.dirname(__file__), 'TimerForSleeping'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForThermometer'))
 
 import ButtonForFeedingTest
 import ButtonForBellTest
