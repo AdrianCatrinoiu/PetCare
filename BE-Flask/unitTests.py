@@ -25,6 +25,7 @@ class UnitTests(test.TestCase):
     
     def test_ButtonFeedingTests(self):
         self.buttonFeedingTest.test_sensor()
+        self.buttonFeedingTest.test_manual_push()
 
     def test_TimerTests(self):
         self.timerTest.test_timer_stop_noise()

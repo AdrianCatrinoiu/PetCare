@@ -7,7 +7,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../ButtonForBell'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 
-from db import get_db
 from db_v2 import DB
 import ButtonForBellModel
 
