@@ -2,29 +2,18 @@ import time
 import threading
 from flask import jsonify
 
-from db import get_db
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-def addInDb(temp):
-    if not temp:
-        return jsonify({
+from db_v2 import DB
 
-                "status": "Temperature level is required."
-            }), 403
-
-    try:
-        db = get_db()
-        db.execute(
-            'INSERT INTO temperature (level)'
-            ' VALUES (?)',
-            (temp,)
-        )
-        db.commit()
-    except:
-        print("database doesn't exist")
+def addInDb(level,DB):
+    DB.addInTable('Temperature',level)
 
 
 class ButtonForThermometer:
     def __init__(self, updateRate):
+        self.DB = DB()
+        self.DB.createTables()
         self.__temperature = None
         self.__isActive = False
         self.__updateRate = updateRate
@@ -44,7 +33,7 @@ class ButtonForThermometer:
         while self.__isActive:
             time.sleep(self.__updateRate)
             self.__temperature = self.__tempHardware
-            addInDb(self.__temperature)
+            addInDb(self.__temperature,self.DB)
 
     def getTemp(self):
         if self.__isActive:

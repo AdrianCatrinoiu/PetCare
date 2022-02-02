@@ -12,31 +12,6 @@ import ButtonForBellModel
 
 def addInDb(feedLevel, feedingType,DB):
     DB.addInTable(feedingType,feedLevel)
-    # if not feedLevel:
-    #     return jsonify({
-    #         "status": "Feed level is required."
-    #     }, 403)
-    # if not ['Water','Food', ''].count(feedingType) == 0:
-    #     return jsonify({
-    #         "status": "Feed level is required."
-    #     }, 403)
-    # try:
-    #     db = get_db()
-    #     if feedingType == 'Water':
-    #         db.execute(
-    #             'INSERT INTO water (level)'
-    #             ' VALUES (?)',
-    #             (feedLevel,)
-    #         )
-    #     if feedingType == 'Food':
-    #         db.execute(
-    #             'INSERT INTO food (level)'
-    #             ' VALUES (?)',
-    #             (feedLevel,)
-    #         )
-    #     db.commit()
-    # except:
-    #     print('db doesn`t exist.')
 
 class ButtonForFeeding:
     def __init__(self, feedingPush, feedingTimer, bellTimer, feedingType):
