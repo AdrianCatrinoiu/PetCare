@@ -6,7 +6,7 @@ from db import get_db
 from db_v2 import DB
 
 bp = Blueprint('food', __name__, url_prefix='/food')
-db = DB()
+db2 = DB()
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 import ButtonForFeedingModel
@@ -16,35 +16,10 @@ foodButton = ButtonForFeedingModel.ButtonForFeeding(25,20,2,'Food')
 
 
 @bp.route('/', methods=('GET', 'POST'))
-def set_food():
-    # if request.method == 'POST':
-    #     food = request.form['food']
-
-    #     if not food:
-    #         return jsonify({'status': 'Food is required.'}), 403
-
-    #     db = get_db()
-    #     db.execute(
-    #         'INSERT INTO food (level)'
-    #         ' VALUES (?)',
-    #         (food,)
-    #     )
-    #     db.commit()
-
-    # check = get_db().execute(
-    #     'SELECT id, changed_date, level'
-    #     ' FROM food'
-    #     ' ORDER BY changed_date DESC'
-    # ).fetchone()
-    # return jsonify({
-    #     'status': 'Food succesfully recorded/retrieved',
-    #     'data': {
-    #         'id': check['id'],
-    #         'changed_date': check['changed_date'],
-    #         'level': check['level']
-    #     }
-    # }), 200
-    return db.getTableData('food'),200
+def get_food():
+    return jsonify({
+        'table': 'Food',
+        'rows':db2.getTableData('food')}), 200
 
 
 @bp.route('/start-food-sensor',methods=('GET', 'POST'))
@@ -65,3 +40,8 @@ def getFeedingLevel():
 def makeFeedingEmpty():
     foodButton.makeFeedingEmpty()
     return 'make food empty',200
+
+@bp.route('/push-food-manual',methods=('GET', 'POST'))
+def pushManuel():
+    foodButton.pushManual()
+    return 'Food was pushed',200

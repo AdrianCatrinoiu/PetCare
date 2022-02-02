@@ -7,37 +7,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../ButtonForBell'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 
-from db import get_db
 from db_v2 import DB
 import ButtonForBellModel
 
 def addInDb(feedLevel, feedingType,DB):
     DB.addInTable(feedingType,feedLevel)
-    # if not feedLevel:
-    #     return jsonify({
-    #         "status": "Feed level is required."
-    #     }, 403)
-    # if not ['Water','Food', ''].count(feedingType) == 0:
-    #     return jsonify({
-    #         "status": "Feed level is required."
-    #     }, 403)
-    # try:
-    #     db = get_db()
-    #     if feedingType == 'Water':
-    #         db.execute(
-    #             'INSERT INTO water (level)'
-    #             ' VALUES (?)',
-    #             (feedLevel,)
-    #         )
-    #     if feedingType == 'Food':
-    #         db.execute(
-    #             'INSERT INTO food (level)'
-    #             ' VALUES (?)',
-    #             (feedLevel,)
-    #         )
-    #     db.commit()
-    # except:
-    #     print('db doesn`t exist.')
 
 class ButtonForFeeding:
     def __init__(self, feedingPush, feedingTimer, bellTimer, feedingType):
@@ -113,3 +87,12 @@ class ButtonForFeeding:
     def makeFeedingEmpty(self):
         self.__feedingLevel = 0
         addInDb(0,self.__feedingType,self.DB)
+    
+    def pushManual(self):
+        isActive = self.__isActive
+        if self.__isActive:
+            self.__isActive = False
+        self.__addFeeding()
+        if isActive:
+            time.sleep(self.__feedingTimer)
+            self.startSensor()

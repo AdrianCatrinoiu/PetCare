@@ -4,7 +4,7 @@ from flask import (
 import os,sys
 from db import get_db
 
-bp = Blueprint('timer', __name__, url_prefix='/timer')
+bp = Blueprint('timer', __name__, url_prefix='/')
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'TimerForSleeping'))
 import TimerForSleepingModel
@@ -12,16 +12,16 @@ import TimerForSleepingModel
 timer = TimerForSleepingModel.Timer(60)
 
 @bp.route('/make-silence', methods=('GET', 'POST'))
-def set_silence():
+def makeSilence():
     timer.makeSilence()
-    return 200
+    return 'Make silence',200
 
 @bp.route('/make-noise', methods=('GET', 'POST'))
-def set_silence():
+def makeNoise():
     timer.makeNoise()
-    return 200
+    return 'Make noise',200
 
-@bp.route('/start-timer', methods=('GET', 'POST'))
-def start_timer():
+@bp.route('/start-timer-for-silence', methods=('GET', 'POST'))
+def startTimer():
     timer.startTimer()
-    return 200
+    return 'Start timer to making silence',200

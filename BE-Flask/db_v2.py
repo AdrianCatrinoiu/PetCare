@@ -1,7 +1,7 @@
 import sqlite3 as sql
 
 class DB:
-    my_db = sql.connect("myDB.db")
+    my_db = sql.connect("myDB.db",check_same_thread = False)
     c = my_db.cursor()
 
     @classmethod
@@ -21,21 +21,21 @@ class DB:
                 CREATE TABLE IF NOT EXISTS temperature (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                level REAL NOT NULL
+                level INTEGER NOT NULL
                 );''')
             
             cls.c.execute('''
                 CREATE TABLE  IF NOT EXISTS food (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 changed_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                level REAL NOT NULL
+                level INTEGER NOT NULL
                 );''')
 
             cls.c.execute('''
                 CREATE TABLE IF NOT EXISTS water (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 changed_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                level REAL NOT NULL
+                level INTEGER NOT NULL
                 );''')
         except:
             pass
@@ -43,11 +43,11 @@ class DB:
     @classmethod
     def addInTable(cls,table, data):
         if table == 'Water':
-            cls.c.execute('insert into water(level) values(?)',(data))
+            cls.c.execute('insert into water(level) values(?)',(data,))
         if table == 'Food':
-            cls.c.execute('insert into food(level) values(?)',(data))
+            cls.c.execute('insert into food(level) values(?)',(data,))
         if table == 'Temperature':
-            cls.c.execute('insert into temperature(level) values(?)',(data))
+            cls.c.execute('insert into temperature(level) values(?)',(data,))
     
     def getTableData(cls,table):
         try:

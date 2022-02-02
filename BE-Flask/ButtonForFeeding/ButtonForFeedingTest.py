@@ -22,6 +22,10 @@ class ButtonFeedingTest(test.TestCase):
         self.feedingButton.stopSensor()
         self.assertEqual(self.feedingButton.getFeedingLevel(), 30, 'Feeding level should be 30.')
     
+    def test_manual_push(self):
+        self.feedingButton.makeFeedingEmpty()
+        self.feedingButton.pushManual()
+        self.assertEqual(self.feedingButton.getFeedingLevel(), 30, 'Feeding level should be 10.')
     
 
 if __name__ == '__main__':
