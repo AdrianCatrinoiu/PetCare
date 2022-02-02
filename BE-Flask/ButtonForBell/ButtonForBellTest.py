@@ -10,7 +10,7 @@ class ButtonBellTest(test.TestCase):
 
     def setUp(self):
         # Aici vom face o instanta a clasei noastre pe care vrem sa o testam
-        self.bellButton = ButtonForBellModel.ButtonForBell(1)
+        self.bellButton = ButtonForBellModel.ButtonForBell(1, '')
 
     def test_sensor(self):
         """
