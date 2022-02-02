@@ -113,3 +113,11 @@ class ButtonForFeeding:
     def makeFeedingEmpty(self):
         self.__feedingLevel = 0
         addInDb(0,self.__feedingType,self.DB)
+    
+    def pushManual(self):
+        isActive = self.__isActive
+        if self.__isActive:
+            self.__isActive = False
+        self.__addFeeding()
+        if isActive:
+            self.startSensor()
