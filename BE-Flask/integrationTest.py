@@ -108,6 +108,31 @@ class IntegrationTest(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertEqual(response.text,'Current temperature is: 28C')
 
+    def test_all_untested_endpoints(self):
+        # button water stauts
+        response = requests.get(self.port + '/water/get-sensor-status')
+        self.assertEqual(response.status_code,200)
+        # button food stauts
+        response = requests.get(self.port + '/food/get-sensor-status')
+        self.assertEqual(response.status_code,200)
+        # test sound 
+        response = requests.get(self.port + '/start-timer-for-silence')
+        self.assertEqual(response.text, 'Start timer to making silence')
+        # get all temperatures
+        response = requests.get(self.port + '/get-temperature')
+        self.assertEqual(response.status_code,200) 
+        # start thermometer
+        response = requests.get(self.port + '/start-thermometer')
+        self.assertEqual(response.status_code,200) 
+        # stop thermometer
+        response = requests.get(self.port + '/stop-thermometer')
+        self.assertEqual(response.status_code,200)
+        # start thermometer
+        response = requests.get(self.port + '/get-current-temperature')
+        self.assertEqual(response.status_code,200)  
+        # get sensor status
+        response = requests.get(self.port + '/get-sensor-status')
+        self.assertEqual(response.status_code,200)
 
 if __name__ == '__main__':
     main()
