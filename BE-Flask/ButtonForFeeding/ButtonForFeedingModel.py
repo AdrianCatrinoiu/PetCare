@@ -96,3 +96,6 @@ class ButtonForFeeding:
         if isActive:
             time.sleep(self.__feedingTimer)
             self.startSensor()
+
+    def getStatus(self):
+        return self.__isActive

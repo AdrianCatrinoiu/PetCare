@@ -43,3 +43,6 @@ class ButtonForThermometer:
         if self.__isActive:
             self.__tempHardware = temp
             return temp
+
+    def getStatus(self):
+        return self.__isActive

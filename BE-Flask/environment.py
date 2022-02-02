@@ -10,7 +10,7 @@ bp = Blueprint('environment', __name__, url_prefix='/')
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForThermometer'))
 import ButtonForThermometerModel
 
-thermometerButton = ButtonForThermometerModel.ButtonForThermometer(0.02)
+thermometerButton = ButtonForThermometerModel.ButtonForThermometer(20)
 
 @bp.route('/get-temperature', methods=['GET','POST'])
 def get_temperature():
@@ -41,3 +41,12 @@ def setFeedingLevel():
         return f'Current temperature is: { temperature }C',200
     else:
         return 'Wrong request',404
+
+@bp.route('/get-sensor-status',methods=('GET', 'POST'))
+def getStatus():
+    status = thermometerButton.getStatus()
+
+    if status == False:
+        return 'Thermometer is inactive'
+    else:
+        return 'Thermometer is active'

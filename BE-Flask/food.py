@@ -45,3 +45,12 @@ def makeFeedingEmpty():
 def pushManuel():
     foodButton.pushManual()
     return 'Food was pushed',200
+
+@bp.route('/get-sensor-status',methods=('GET', 'POST'))
+def getStatus():
+    status = foodButton.getStatus()
+
+    if status == False:
+        return 'Food sensor is inactive'
+    else:
+        return 'Food sensor is active'

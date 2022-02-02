@@ -47,3 +47,12 @@ def makeFeedingEmpty():
 def pushManuel():
     waterButton.pushManual()
     return 'Water was pushed',200
+
+@bp.route('/get-sensor-status',methods=('GET', 'POST'))
+def getStatus():
+    status = waterButton.getStatus()
+
+    if status == False:
+        return 'Water sensor is inactive'
+    else:
+        return 'Water sensor is active'
