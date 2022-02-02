@@ -11,13 +11,13 @@ def addInDb(level,DB):
 
 
 class ButtonForThermometer:
-    def __init__(self, updateRate):
+    def __init__(self, updateRate, tempInit):
         self.DB = DB()
         self.DB.createTables()
         self.__temperature = None
         self.__isActive = False
         self.__updateRate = updateRate
-        self.__tempHardware = 23
+        self.__tempHardware = tempInit
 
     def startSensor(self):
         self.__isActive = True

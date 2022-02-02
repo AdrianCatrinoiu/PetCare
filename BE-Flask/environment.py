@@ -10,7 +10,7 @@ bp = Blueprint('environment', __name__, url_prefix='/')
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForThermometer'))
 import ButtonForThermometerModel
 
-thermometerButton = ButtonForThermometerModel.ButtonForThermometer(20)
+thermometerButton = ButtonForThermometerModel.ButtonForThermometer(20,23)
 
 @bp.route('/get-temperature', methods=['GET','POST'])
 def get_temperature():
