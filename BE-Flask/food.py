@@ -29,11 +29,15 @@ def startSensor():
 
 @bp.route('/stop-food-sensor',methods=('GET', 'POST'))
 def stopSensor():
+    if request.method == 'POST':
+        return 'Wrong request',404
     foodButton.stopSensor()
     return 'Food sensor is closed',200
 
 @bp.route('/get-food-level',methods=('GET', 'POST'))
 def getFeedingLevel():
+    if request.method == 'POST':
+        return 'Wrong request',404
     return f'Your food level is {foodButton.getFeedingLevel()}.',200
 
 @bp.route('/make-food-empty',methods=('GET', 'POST'))

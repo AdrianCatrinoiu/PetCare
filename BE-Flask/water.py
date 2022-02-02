@@ -31,11 +31,15 @@ def startSensor():
 
 @bp.route('/stop-water-sensor',methods=('GET', 'POST'))
 def stopSensor():
+    if request.method == 'POST':
+        return 'Wrong request',404
     waterButton.stopSensor()
     return 'Water sensor is closed',200
 
 @bp.route('/get-water-level',methods=('GET', 'POST'))
 def getFeedingLevel():
+    if request.method == 'POST':
+        return 'Wrong request',404
     return f'Your water level is {waterButton.getFeedingLevel()}.',200
 
 @bp.route('/make-water-empty',methods=('GET', 'POST'))
