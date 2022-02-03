@@ -2,7 +2,7 @@
 
 ## Despre proiect
 
-Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru animalutele tale. Tot ce trebuie sa faci este sa adaugi o data la saptamana in valva dispozitivului bilutele preferate ale animalutului tau si sa adaugi apa in pompa. Apa si mancarea poti fi programate cu ajutorul unui timer, cat si eliberate manual. De asemenea, are incorporat un timer cu clopotel care il va anunta pe animalutul tau ca a sosit ora de somn. Tot ce trebuie sa faci tu este sa mergi cu el la plimbarile zilnice, de restul ne ocupam noi! 
+Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru animalutele tale. Tot ce trebuie sa faci este sa adaugi o data la saptamana in valva dispozitivului bilutele preferate ale animalutului tau si sa adaugi apa in pompa. Apa si mancarea poti fi programate cu ajutorul unui timer, cat si eliberate manual. De asemenea, are incorporat un timer care il va anunta pe animalutul tau ca a sosit ora de somn. Tot ce trebuie sa faci tu este sa mergi cu el la plimbarile zilnice, de restul ne ocupam noi! 
 
 ### Framework-uri / Librarii utilizate:
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
@@ -91,6 +91,76 @@ Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru anima
  ```
  POST http://127.0.0.1:5000/start-thermometer
  ```
+ 
+ ## Functionalitati
+ 
+•	Permite stăpânului să nu aibă grija animalelor de casă cu excepția plimbărilor.
+•	Hrănirea și hidratarea animalelor de casă după un plan zilnic.
+•	Supravegherea confortului termic din încăperea dispozitivului.
+•	Fixarea unui timer pentru ora de somn a animalului.
+•	Anuntarea animalului cand bolurile de apa si mancare sunt umplute.
+•	Customizarea clopotelului aplicatiei pe night mode.
+• Termomentru pentru aflarea temperaturii din camera in care sta animalutul
+
+## HTTP
+Pentru HTTP, folosim Flask
+
+### Swagger
+Principalele rute sunt:
+```
+/get-temperature
+```
+```
+/start-thermometer
+```
+```
+/stop-thermometer
+```
+```
+/get-current-temperature
+```
+```
+/set-current-temperature
+```
+```
+/get-sensor-status
+```
+
+## MQTT
+
+- cu MQTT se da publish la mesaje
+- la fiecare request HTTP folosim MQTT
+- cu ajutorul MQTT se da publish la mesaje folosind un client de MQTT
+
+[Documentatie MQTT](https://www.emqx.com/en/blog/how-to-use-mqtt-in-python)
+
+## Unit testing
+
+Am folosit libraria ```unittest```. Comanda pentru rulare este urmatoarea:
+
+
+## Integration testing
+
+Am folosit libraria ```unittest```. Comanda pentru rulare este urmatoarea:
+
+## Resurse
+
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [MQTT](https://www.emqx.com/en/blog/how-to-use-mqtt-in-python)
+- [Python](https://www.python.org/)
+- [Postman](https://www.postman.com/)
+- [Swagger](https://swagger.io/)
+- [Unit testing](https://docs.python.org/3/library/unittest.html)
+
+## Echipa
+
+Adrian Catrinoiu
+Giuliano Florentin Dumitru
+Maria Neacsu
+Marinel Arsene
+Laurentiu Andrei Postole
+
+
  
  
 
