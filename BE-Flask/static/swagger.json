@@ -1,61 +1,913 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "description": "sean",
+    "description": "This is a sample server PetCare server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
     "version": "1.0.0",
-    "title": "PetCare",
+    "title": "Swagger PetCare",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
     "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/licenses/MIT"
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "servers": [
-    {
-      "url": "/"
-    }
-  ],
+  "host": "petstore.swagger.io",
+  "basePath": "/v2",
   "tags": [
     {
-      "name": "Water Request",
-      "description": "Example API for requesting and return water requests"
+      "name": "water"
+    },
+    {
+      "name": "environment"
+    },
+    {
+      "name": "food"
     }
   ],
+  "schemes": ["https", "http"],
   "paths": {
     "/water": {
-      "get": {
-        "tags": ["Water Request"],
-        "summary": "Returns waterRequests",
-        "responses": {
-          "200": {
-            "description": "OK",
+      "post": {
+        "tags": ["water"],
+        "summary": "Add a new water",
+        "description": "",
+        "operationId": "addWater",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water object that needs to be added",
+            "required": true,
             "schema": {
-              "$ref": "#/components/schema/waters"
+              "$ref": "#/definitions/Water"
             }
           }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
         }
-      }
-    }
-  },
-  "components": {
-    "schema": {
-      "id": {
-        "properties": {
-          "uuid": {
-            "type": "string"
+      },
+      "get": {
+        "tags": ["water"],
+        "summary": "Find water",
+        "description": "",
+        "operationId": "getWater",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Water"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
           }
         }
       }
     },
-    "waters": {
-      "type": "object",
-      "properties": {
-        "water": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/components/schema/water"
+    "/water/start-water-sensor": {
+      "post": {
+        "tags": ["water"],
+        "summary": "Start water sensor",
+        "description": "",
+        "operationId": "startWater",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water sensor object that needs to be started",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Water"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["water"],
+        "summary": "Get start water sensor",
+        "description": "",
+        "operationId": "getWaterSensor",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Water"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/water/stop-water-sensor": {
+      "post": {
+        "tags": ["water"],
+        "summary": "Stop water sensor",
+        "description": "",
+        "operationId": "stopWater",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water sensor object that needs to be stopped",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Water"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["water"],
+        "summary": "Get stop water sensor",
+        "description": "",
+        "operationId": "getWaterSensorStop",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Water"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/water/get-water-level": {
+      "post": {
+        "tags": ["water"],
+        "summary": "Water level",
+        "description": "",
+        "operationId": "levelWater",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water level object that needs to be posted",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Water"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["water"],
+        "summary": "Get water level",
+        "description": "",
+        "operationId": "getWaterLevel",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Water"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/water/make-water-empty": {
+      "post": {
+        "tags": ["water"],
+        "summary": "Water empty",
+        "description": "",
+        "operationId": "emptyWater",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water object that needs to be empty",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Water"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["water"],
+        "summary": "Get water empty",
+        "description": "",
+        "operationId": "getWaterEmpty",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Water"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/water/push-water-manual": {
+      "post": {
+        "tags": ["water"],
+        "summary": "Push water manual",
+        "description": "",
+        "operationId": "manualWater",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water object that needs to be pushed",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Water"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["water"],
+        "summary": "Get water push",
+        "description": "",
+        "operationId": "getWaterPush",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Water"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/get-temperature": {
+      "post": {
+        "tags": ["environment"],
+        "summary": "Add a new temperature",
+        "description": "",
+        "operationId": "addTemperature",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Temperature object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Environment"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["environment"],
+        "summary": "Find temperature",
+        "description": "",
+        "operationId": "getTemperature",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Environment"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/start-thermometer": {
+      "post": {
+        "tags": ["environment"],
+        "summary": "Start thermometer",
+        "description": "",
+        "operationId": "startThermometer",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Thermometer object that needs to be started",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Environment"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["environment"],
+        "summary": "Get start temperature",
+        "description": "",
+        "operationId": "getThermometerStart",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Environment"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/stop-thermometer": {
+      "post": {
+        "tags": ["environment"],
+        "summary": "Stop thermometer",
+        "description": "",
+        "operationId": "stopThermometer",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Thermometer object that needs to be stopped",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Environment"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["environment"],
+        "summary": "Get stop temperature",
+        "description": "",
+        "operationId": "getThermometerStop",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Environment"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/get-current-temperature": {
+      "post": {
+        "tags": ["environment"],
+        "summary": "Current temperature",
+        "description": "",
+        "operationId": "currentTemperature",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Temperature object that needs to be current",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Environment"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["environment"],
+        "summary": "Get current temperature",
+        "description": "",
+        "operationId": "getCurrentTemperature",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Environment"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/set-current-temperature": {
+      "post": {
+        "tags": ["environment"],
+        "summary": "Set current temperature",
+        "description": "",
+        "operationId": "setCurrentTemperature",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Temperature object that needs to be setted",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Environment"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["environment"],
+        "summary": "Get set current temperature",
+        "description": "",
+        "operationId": "getSetCurrentTemperature",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Environment"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/food": {
+      "post": {
+        "tags": ["food"],
+        "summary": "Add a new food",
+        "description": "",
+        "operationId": "addFood",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Food object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["food"],
+        "summary": "Find food",
+        "description": "",
+        "operationId": "getFood",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/food/start-food-sensor": {
+      "post": {
+        "tags": ["food"],
+        "summary": "Start water sensor",
+        "description": "",
+        "operationId": "startFood",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Food object that needs to be started",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["food"],
+        "summary": "Get start water sensor",
+        "description": "",
+        "operationId": "getFoodSensor",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/food/stop-food-sensor": {
+      "post": {
+        "tags": ["food"],
+        "summary": "Stop food sensor",
+        "description": "",
+        "operationId": "stopFood",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Food object that needs to be stopped",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["food"],
+        "summary": "Get stop food sensor",
+        "description": "",
+        "operationId": "getFoodSensorStop",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/food/get-food-level": {
+      "post": {
+        "tags": ["food"],
+        "summary": "Level food",
+        "description": "",
+        "operationId": "levelFood",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water level object that needs to be posted",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["food"],
+        "summary": "Get level food",
+        "description": "",
+        "operationId": "getLevelFoodSensor",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/food/make-food-empty": {
+      "post": {
+        "tags": ["food"],
+        "summary": "Empty food",
+        "description": "",
+        "operationId": "emptyFood",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water object that needs to be empty",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["food"],
+        "summary": "Get empty food",
+        "description": "",
+        "operationId": "getEmptyFood",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/food/push-food-manual": {
+      "post": {
+        "tags": ["food"],
+        "summary": "Push food manual",
+        "description": "",
+        "operationId": "pushFood",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Water object that needs to be pushed",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Food"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": ["food"],
+        "summary": "Get push food manual",
+        "description": "",
+        "operationId": "getPushFood",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Food"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
           }
         }
       }
     }
+  },
+  "definitions": {
+    "Food": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "changed_data": {
+          "type": "string",
+          "format": "CURRENT_TIMESTAMP"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Temperature"
+      }
+    },
+    "Environment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "CURRENT_TIMESTAMP"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Environment"
+      }
+    },
+    "Water": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "changed_data": {
+          "type": "string",
+          "format": "CURRENT_TIMESTAMP"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "Water"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
   }
 }

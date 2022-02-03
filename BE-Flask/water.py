@@ -40,6 +40,8 @@ def startSensor():
 
 @bp.route('/stop-water-sensor', methods=('GET', 'POST'))
 def stopSensor():
+    if request.method == 'POST':
+        return 'Wrong request', 404
     waterButton.stopSensor()
     client = get_mqtt_client()
     publish_message(client, 'Stop water sensor')
@@ -51,6 +53,8 @@ def getFeedingLevel():
     client = get_mqtt_client()
     message = 'Get water level: '+str(waterButton.getFeedingLevel())
     publish_message(client, message)
+    if request.method == 'POST':
+        return 'Wrong request', 404
     return f'Your water level is {waterButton.getFeedingLevel()}.', 200
 
 
@@ -68,3 +72,13 @@ def pushManuel():
     publish_message(client, 'Add water manually by incremental of 10')
     waterButton.pushManual()
     return 'Water was pushed', 200
+
+
+@bp.route('/get-sensor-status', methods=('GET', 'POST'))
+def getStatus():
+    status = waterButton.getStatus()
+
+    if status == False:
+        return 'Water sensor is inactive'
+    else:
+        return 'Water sensor is active'

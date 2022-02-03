@@ -54,6 +54,29 @@
 					"response": []
 				},
 				{
+					"name": "Check water sensor status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/water/get-sensor-status",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"water",
+								"get-sensor-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Starting water sensor",
 					"request": {
 						"method": "POST",
@@ -190,6 +213,29 @@
 							"path": [
 								"food",
 								"get-food-level"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check food sensor status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/food/get-sensor-status",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"food",
+								"get-sensor-status"
 							]
 						}
 					},
@@ -370,6 +416,28 @@
 									"value": null,
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check thermometer status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/get-sensor-status",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"get-sensor-status"
 							]
 						}
 					},
