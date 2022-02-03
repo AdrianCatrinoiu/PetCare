@@ -10,7 +10,7 @@ class ButtonFeedingTest(test.TestCase):
 
     def setUp(self):
         # Aici vom face o instanta a clasei noastre pe care vrem sa o testam
-        self.feedingButton = ButtonForFeedingModel.ButtonForFeeding(10,1,1,'')
+        self.feedingButton = ButtonForFeedingModel.ButtonForFeeding('',10,1,1)
 
     def test_sensor(self):
         """

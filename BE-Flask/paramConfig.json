@@ -1,0 +1,19 @@
+{
+    "thermometer": {
+        "updateRate": 5,
+        "tempInit": 23,
+        "thermometerReadings": [23,23.5,24,21.2,23.3,25,31.7]
+    },
+    "feeding": {
+        "food": {
+            "feedingPush": 25,
+            "feedingTimer": 20,
+            "bellTimer": 2
+        },
+        "water": {
+            "feedingPush": 10,
+            "feedingTimer": 5,
+            "bellTimer": 1
+        }
+    }
+}

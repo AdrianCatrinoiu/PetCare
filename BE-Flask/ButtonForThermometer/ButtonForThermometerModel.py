@@ -1,6 +1,6 @@
 import time
 import threading, sys, os
-from flask import jsonify
+import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -9,9 +9,13 @@ from db_v2 import DB
 def addInDb(level,DB):
     DB.addInTable('Temperature',level)
 
+f = open('paramConfig.json')
+parameterConfig = json.load(f)
+parameterConfig = parameterConfig['thermometer']
+
 
 class ButtonForThermometer:
-    def __init__(self, updateRate, tempInit):
+    def __init__(self, updateRate=parameterConfig['updateRate'], tempInit=parameterConfig['tempInit']):
         self.DB = DB()
         self.DB.createTables()
         self.__temperature = None
