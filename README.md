@@ -19,13 +19,9 @@ Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru anima
 
 ## Set up
 
-### Python & Flask
+### Python
 
 - Python v 3.6 (minim)
-- Flask
- ```
- pip install Flask
- ```
  
  ### Instalare
  1. Repo
@@ -33,16 +29,16 @@ Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru anima
  git clone git@github.com:AdrianCatrinoiu/PetCare.git
  ```
  
- 2. Python & Flask
+ 2. Comanda pentru instalarea librariilor
  ```
- pip install -e
+ pip install -r requirements.txt
  ```
  
  ### Rulare
  
  In terminal:
  ```
- cd be-flask && python app.py
+ cd BE-flask && python app.py
  ```
  
  ### Senzori
@@ -127,6 +123,7 @@ Principalele rute sunt:
 ```
 
 ## MQTT
+Pentru MQTT folosim Flask-MQTT
 
 - cu MQTT se da publish la mesaje
 - la fiecare request HTTP folosim MQTT
