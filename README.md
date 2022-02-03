@@ -10,7 +10,7 @@ Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru anima
 
 ### Document de analiza
 
-[Aici]
+[Aici](https://github.com/AdrianCatrinoiu/PetCare/blob/main/Document%20de%20analiza%20I.docx)
 
 ### Analiza cerintelor clientului , planning poker & MoSCoW Prioritization
 
