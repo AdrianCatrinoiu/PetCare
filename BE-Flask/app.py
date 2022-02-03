@@ -6,7 +6,6 @@ import os
 from paho.mqtt import client as mqtt_client
 
 import environment
-import status_api
 import food
 import water
 import sound
@@ -80,7 +79,6 @@ def create_app():
 
     app.register_blueprint(environment.bp)
     app.register_blueprint(food.bp)
-    app.register_blueprint(status_api.bp)
     app.register_blueprint(water.bp)
     app.register_blueprint(sound.bp)
     socketio = SocketIO(app)

@@ -32,7 +32,8 @@ def get_water():
 def startSensor():
     waterButton.startSensor()
     client = app.get_mqtt_client()
-    app.publish_message(client, 'Start water sensor')
+    message = 'After sensor start current water level is: '+str(waterButton.getFeedingLevel())
+    app.publish_message(client, message)
     return 'Water sensor is opened', 200
 
 
@@ -42,7 +43,8 @@ def stopSensor():
         return 'Wrong request', 404
     waterButton.stopSensor()
     client = app.get_mqtt_client()
-    app.publish_message(client, 'Stop water sensor')
+    message = 'After sensor stop current water level is: '+str(waterButton.getFeedingLevel())
+    app.publish_message(client, message)
     return 'Water sensor is closed', 200
 
 
@@ -59,7 +61,8 @@ def getFeedingLevel():
 @bp.route('/make-water-empty', methods=('GET', 'POST'))
 def makeFeedingEmpty():
     client = app.get_mqtt_client()
-    app.publish_message(client, 'Make current water empty')
+    message='Current water level is: '+str(waterButton.getFeedingLevel())
+    app.publish_message(client, message)
     waterButton.makeFeedingEmpty()
     return 'make water empty', 200
 
