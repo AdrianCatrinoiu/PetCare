@@ -4,7 +4,6 @@ from flask import (
 import os,sys
 from db import get_db
 from db_v2 import DB
-import json
 
 bp = Blueprint('food', __name__, url_prefix='/food')
 db2 = DB()
@@ -12,11 +11,8 @@ db2 = DB()
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 import ButtonForFeedingModel
 
-f = open('paramConfig.json')
-parameterConfig = json.load(f)
-parameterConfig = parameterConfig['feeding']['food']
+foodButton = ButtonForFeedingModel.ButtonForFeeding(25,20,2,'Food')
 
-foodButton = ButtonForFeedingModel.ButtonForFeeding('Food',parameterConfig['feedingPush'],parameterConfig['feedingTimer'],parameterConfig['bellTimer'])
 
 
 @bp.route('/', methods=('GET', 'POST'))

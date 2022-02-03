@@ -4,7 +4,6 @@ from flask import (
 import os,sys
 from db import get_db
 from db_v2 import DB
-import json
 
 bp = Blueprint('water', __name__, url_prefix='/water')
 
@@ -12,12 +11,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 import ButtonForFeedingModel
 
 db2 = DB()
-
-f = open('paramConfig.json')
-parameterConfig = json.load(f)
-parameterConfig = parameterConfig['feeding']['water']
-
-waterButton = ButtonForFeedingModel.ButtonForFeeding('Water',parameterConfig['feedingPush'],parameterConfig['feedingTimer'],parameterConfig['bellTimer'])
+waterButton =  ButtonForFeedingModel.ButtonForFeeding(10,5,1,'Water')
 
 def get_blueprint():
     """Return the blueprint for the main app module"""

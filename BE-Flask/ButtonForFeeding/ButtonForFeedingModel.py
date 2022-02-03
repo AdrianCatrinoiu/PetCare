@@ -13,9 +13,8 @@ import ButtonForBellModel
 def addInDb(feedLevel, feedingType,DB):
     DB.addInTable(feedingType,feedLevel)
 
-
 class ButtonForFeeding:
-    def __init__(self, feedingType, feedingPush, feedingTimer, bellTimer):
+    def __init__(self, feedingPush, feedingTimer, bellTimer, feedingType):
         """
             feedingPush -> int, a value between 0 and 100 to let water or food in bowl
             feedingTimer -> set a value in seconds for feeding interval
