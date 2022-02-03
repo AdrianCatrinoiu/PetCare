@@ -7,7 +7,7 @@ class ButtonThermometerTest(test.TestCase):
         Clasa ce testeaza clasa ButtonForThermometer
     '''
     def setUp(self):
-        self.thermometerButton = ButtonForThermometerModel.ButtonForThermometer(1,23)
+        self.thermometerButton = ButtonForThermometerModel.ButtonForThermometer(1,23,True)
 
     def test_sensor(self):
         self.thermometerButton.startSensor()
