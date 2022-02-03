@@ -1,0 +1,247 @@
+asyncapi: "2.3.0"
+info:
+  title: PetCare API
+  version: "1.0.0"
+  description: |
+    The Smart app for providing food and water for your pet remotely.
+
+    ### Check out its awesome features:
+
+    * Fill up the water/food bowl manually
+    * Fill up the water/food bowl automatically by a set timer
+    * Receive real-time information about environmental temperature
+    * Ring the device bell or put it to sleep mode
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  test:
+    url: broker.emqx.io
+    protocol: MQTT
+    description: Test broker
+
+defaultContentType: application/json
+
+channels:
+  water/:
+    description: The topic on which water values will be displayed.
+    publish:
+      summary: Inform about water level based on database
+      message:
+        $ref: "#/components/messages/waterMeasured"
+
+  water/get-water-level:
+    description: The topic on which water values will be displayed.
+    publish:
+      summary: Inform about water level based on last recording
+      message:
+        $ref: "#/components/messages/waterMeasured"
+
+  water/start-water-sensor:
+    description: The topic on which the water sensor will start.
+    publish:
+      summary: Add water up to 100% of bowl capacity
+      message:
+        $ref: "#/components/messages/waterAdded"
+
+  water/stop-water-sensor:
+    description: The topic on which the water sensor will stop.
+    publish:
+      summary: Stop water sensor, it will display last level of water
+      message:
+        $ref: "#/components/messages/waterAdded"
+
+  water/make-water-empty:
+    description: The topic on which the water bowl will become empty.
+    publish:
+      summary: Empty water bowl, it will display water level 0
+      message:
+        $ref: "#/components/messages/waterRemove"
+
+  water/push-water-manual:
+    description: The topic on which the water sensor will stop.
+    publish:
+      summary: Stop water sensor, it will display last level of water
+      message:
+        $ref: "#/components/messages/waterAdd"
+
+  food/:
+    description: The topic on which food values will be displayed.
+    publish:
+      summary: Inform about food level based on database
+      message:
+        $ref: "#/components/messages/foodMeasured"
+
+  food/get-food-level:
+    description: The topic on which food values will be displayed.
+    publish:
+      summary: Inform about food level based on last recording
+      message:
+        $ref: "#/components/messages/foodMeasured"
+
+  food/start-food-sensor:
+    description: The topic on which the food sensor will start.
+    publish:
+      summary: Add food up to 100% of bowl capacity
+      message:
+        $ref: "#/components/messages/foodAdded"
+
+  food/stop-food-sensor:
+    description: The topic on which the food sensor will stop.
+    publish:
+      summary: Stop food sensor, it will display last level of food
+      message:
+        $ref: "#/components/messages/foodAdded"
+
+  food/make-food-empty:
+    description: The topic on which the food bowl will become empty.
+    publish:
+      summary: Empty food bowl, it will display food level 0
+      message:
+        $ref: "#/components/messages/foodRemove"
+
+  food/push-food-manual:
+    description: The topic on which the food sensor will stop.
+    publish:
+      summary: Stop food sensor, it will display last level of food
+      message:
+        $ref: "#/components/messages/foodAdd"
+
+  get-current-temperature:
+    description: The topic on which current temperature will be displayed.
+    publish:
+      summary: Inform about temperature level based on last recording
+      message:
+        $ref: "#/components/messages/temperatureMeasured"
+
+  get-temperature:
+    description: The topic on which temperature values will be displayed.
+    publish:
+      summary: Get temperature reading history
+      message:
+        $ref: "#/components/messages/temperatureMeasured"
+
+  set-current-temperature:
+    description: The topic on which the temperature will be set for manual testing.
+    publish:
+      summary: Set current temperature
+      message:
+        $ref: "#/components/messages/temperatureAdded"
+
+  start-thermometer:
+    description: The topic on which the temperature sensor will start.
+    publish:
+      summary: The topic on which the sensor will get current temperature reading from environment
+      message:
+        $ref: "#/components/messages/temperatureMeasured"
+
+  stop-thermometer:
+    description: The topic on which the temperature sensor will stop.
+    publish:
+      summary: Stop temperature sensor
+      message:
+        $ref: "#/components/messages/temperatureMeasured"
+
+  make-silence:
+    description: The topic on which the bell will stop ringing.
+    publish:
+      summary: Stop ringing the bell
+      message:
+        $ref: "#/components/messages/bellRing"
+
+  make-noise:
+    description: The topic on which the bell will ring.
+    publish:
+      summary: Ring the bell
+      message:
+        $ref: "#/components/messages/bellRing"
+
+  start-timer-for-silence:
+    description: The topic on which the bell stop timer will start and after a while the bell will be put on silent mode.
+    publish:
+      summary: Stop ringing
+      message:
+        $ref: "#/components/messages/bellRing"
+
+components:
+  messages:
+    waterMeasured:
+      name: waterMeasured
+      title: Water measured
+      summary: Information about last recorded water level.
+
+    waterAdded:
+      name: waterAdded
+      title: Water added
+      summary: Information about added water
+
+    waterRemove:
+      name: waterRemove
+      title: Water empty
+      summary: Empty the current bowl of water
+
+    waterAdd:
+      name: waterAdd
+      title: Add water
+      summary: Add water manually by fixed increment of 10%
+
+    foodMeasured:
+      name: foodMeasured
+      title: Food measured
+      summary: Information about last recorded food level.
+
+    foodAdded:
+      name: foodAdded
+      title: Food added
+      summary: Information about added food
+
+    foodRemove:
+      name: foodRemove
+      title: Food empty
+      summary: Empty the current bowl of food
+
+    foodAdd:
+      name: foodAdd
+      title: Add food
+      summary: Add food manually by fixed increment of 25%
+
+    temperatureMeasured:
+      name: temperatureMeasured
+      title: Food measured
+      summary: Information about last recorded temperature level.
+
+    temperatureAdded:
+      name: temperatureAdded
+      title: Food added
+      summary: Information about added temperature level
+      contentType: application/json
+      payload:
+        $ref: "#/components/schemas/addTemperaturePayload"
+
+    bellRing:
+      name: bellRing
+      title: Bell ringing
+      summary: Sound output of the device bell
+
+  schemas:
+    addTemperaturePayload:
+      title: SetTemperature
+      required:
+        - level
+      type: object
+      properties:
+        level:
+          title: Temperature
+          type: number
+      description: " Send the current set temperature value as a message through MQTT."
+
+  messageTraits:
+    commonHeaders:
+      headers:
+        type: object
+        properties:
+          my-app-header:
+            type: integer
+            minimum: 0
+            maximum: 100

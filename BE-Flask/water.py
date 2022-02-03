@@ -1,17 +1,18 @@
 from flask import (
     Blueprint, request, jsonify
 )
-import os,sys
-from db import get_db
+import os
+import sys
 from db_v2 import DB
-
+import app
 bp = Blueprint('water', __name__, url_prefix='/water')
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'ButtonForFeeding'))
 import ButtonForFeedingModel
 
 db2 = DB()
-waterButton =  ButtonForFeedingModel.ButtonForFeeding(10,5,1,'Water')
+waterButton = ButtonForFeedingModel.ButtonForFeeding(10, 5, 1, 'Water')
+
 
 def get_blueprint():
     """Return the blueprint for the main app module"""
@@ -20,42 +21,66 @@ def get_blueprint():
 
 @bp.route('/', methods=('GET', 'POST'))
 def get_water():
+    client = app.get_mqtt_client()
+    app.publish_message(client, 'Get water history')
     return jsonify({
         'table': 'Water',
-        'rows':db2.getTableData('water')}), 200
+        'rows': db2.getTableData('water')}), 200
 
-@bp.route('/start-water-sensor',methods=('GET', 'POST'))
+
+@bp.route('/start-water-sensor', methods=('GET', 'POST'))
 def startSensor():
     waterButton.startSensor()
-    return 'Water sensor is opened',200
+    client = app.get_mqtt_client()
+    message = 'After sensor start current water level is: '+str(waterButton.getFeedingLevel())
+    app.publish_message(client, message)
+    return 'Water sensor is opened', 200
 
-@bp.route('/stop-water-sensor',methods=('GET', 'POST'))
+
+@bp.route('/stop-water-sensor', methods=('GET', 'POST'))
 def stopSensor():
     if request.method == 'POST':
-        return 'Wrong request',404
+        return 'Wrong request', 404
     waterButton.stopSensor()
-    return 'Water sensor is closed',200
+    client = app.get_mqtt_client()
+    message = 'After sensor stop current water level is: '+str(waterButton.getFeedingLevel())
+    app.publish_message(client, message)
+    return 'Water sensor is closed', 200
 
-@bp.route('/get-water-level',methods=('GET', 'POST'))
+
+@bp.route('/get-water-level', methods=('GET', 'POST'))
 def getFeedingLevel():
     if request.method == 'POST':
-        return 'Wrong request',404
-    return f'Your water level is {waterButton.getFeedingLevel()}.',200
+        return 'Wrong request', 404
+    client = app.get_mqtt_client()
+    message = 'Current water level: '+str(waterButton.getFeedingLevel())
+    app.publish_message(client, message)
+    return f'Your water level is {waterButton.getFeedingLevel()}.', 200
 
-@bp.route('/make-water-empty',methods=('GET', 'POST'))
+
+@bp.route('/make-water-empty', methods=('GET', 'POST'))
 def makeFeedingEmpty():
+    client = app.get_mqtt_client()
+    message='Current water level is: '+str(waterButton.getFeedingLevel())
+    app.publish_message(client, message)
     waterButton.makeFeedingEmpty()
-    return 'make water empty',200
+    return 'make water empty', 200
 
-@bp.route('/push-water-manual',methods=('GET', 'POST'))
+
+@bp.route('/push-water-manual', methods=('GET', 'POST'))
 def pushManuel():
+    client = app.get_mqtt_client()
+    app.publish_message(client, 'Add water manually by incremental of 10')
     waterButton.pushManual()
-    return 'Water was pushed',200
+    return 'Water was pushed', 200
 
-@bp.route('/get-sensor-status',methods=('GET', 'POST'))
+
+@bp.route('/get-sensor-status', methods=('GET', 'POST'))
 def getStatus():
     status = waterButton.getStatus()
-
+    client = app.get_mqtt_client()
+    message = 'Is sensor active: '+str(status)
+    app.publish_message(client, message)
     if status == False:
         return 'Water sensor is inactive'
     else:
