@@ -5,14 +5,10 @@ from flask_bootstrap import Bootstrap
 from flask_swagger_ui import get_swaggerui_blueprint
 import os
 from threading import Thread
-import time
-import json
 from paho.mqtt import client as mqtt_client
 
-import db
 import environment
 import status_api
-import status
 import food
 import water
 import sound
@@ -78,14 +74,12 @@ def create_app():
 
     app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
     # ### end swagger specific ###
-    app.register_blueprint(water.get_blueprint())
 
     @app.route('/')
     def hello_world():
         publish_message(client, 'Hello world from mqtt')
         return 'Hello World!'
 
-    db.init_app(app)
     app.register_blueprint(environment.bp)
     app.register_blueprint(food.bp)
     app.register_blueprint(status_api.bp)
