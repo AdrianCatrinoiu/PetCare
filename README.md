@@ -14,7 +14,7 @@ Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru anima
 
 ### Analiza cerintelor clientului , planning poker & MoSCoW Prioritization
 
-[Aici]
+[Aici](https://github.com/AdrianCatrinoiu/PetCare/blob/main/Analiza%20cerintelor%20clientului.docx)
 
 
 ## Set up
@@ -94,13 +94,13 @@ Dispozitivul Pet Care te ajuta sa scapi de grija mancarii si a apei pentru anima
  
  ## Functionalitati
  
-•	Permite stăpânului să nu aibă grija animalelor de casă cu excepția plimbărilor.
-•	Hrănirea și hidratarea animalelor de casă după un plan zilnic.
-•	Supravegherea confortului termic din încăperea dispozitivului.
-•	Fixarea unui timer pentru ora de somn a animalului.
-•	Anuntarea animalului cand bolurile de apa si mancare sunt umplute.
-•	Customizarea clopotelului aplicatiei pe night mode.
-• Termomentru pentru aflarea temperaturii din camera in care sta animalutul
+-	Permite stăpânului să nu aibă grija animalelor de casă cu excepția plimbărilor.
+-	Hrănirea și hidratarea animalelor de casă după un plan zilnic.
+-	Supravegherea confortului termic din încăperea dispozitivului.
+-	Fixarea unui timer pentru ora de somn a animalului.
+-	Anuntarea animalului cand bolurile de apa si mancare sunt umplute.
+-	Customizarea clopotelului aplicatiei pe night mode.
+- Termomentru pentru aflarea temperaturii din camera in care sta animalutul
 
 ## HTTP
 Pentru HTTP, folosim Flask
@@ -137,11 +137,17 @@ Principalele rute sunt:
 ## Unit testing
 
 Am folosit libraria ```unittest```. Comanda pentru rulare este urmatoarea:
+```
+python unitTests.py
+```
 
 
 ## Integration testing
 
 Am folosit libraria ```unittest```. Comanda pentru rulare este urmatoarea:
+```
+python integrationTest.py
+```
 
 ## Resurse
 
@@ -154,11 +160,11 @@ Am folosit libraria ```unittest```. Comanda pentru rulare este urmatoarea:
 
 ## Echipa
 
-Adrian Catrinoiu
-Giuliano Florentin Dumitru
-Maria Neacsu
-Marinel Arsene
-Laurentiu Andrei Postole
+1. Adrian Catrinoiu
+2. Giuliano Florentin Dumitru
+3. Maria Neacsu
+4. Marinel Arsene
+5. Laurentiu Andrei Postole
 
 
  
