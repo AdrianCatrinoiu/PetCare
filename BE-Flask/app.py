@@ -1,10 +1,8 @@
 from flask import Flask
 from flask_mqtt import Mqtt
 from flask_socketio import SocketIO
-from flask_bootstrap import Bootstrap
 from flask_swagger_ui import get_swaggerui_blueprint
 import os
-from threading import Thread
 from paho.mqtt import client as mqtt_client
 
 import environment
@@ -86,7 +84,6 @@ def create_app():
     app.register_blueprint(water.bp)
     app.register_blueprint(sound.bp)
     socketio = SocketIO(app)
-    bootstrap = Bootstrap(app)
     return app
 
 
