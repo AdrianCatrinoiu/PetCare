@@ -25,27 +25,16 @@
       "name": "food"
     }
   ],
-  "schemes": [
-    "https",
-    "http"
-  ],
+  "schemes": ["https", "http"],
   "paths": {
     "/water": {
       "post": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Add a new water",
         "description": "",
         "operationId": "addWater",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -64,16 +53,11 @@
         }
       },
       "get": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Find water",
         "description": "",
         "operationId": "getWater",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -93,20 +77,12 @@
     },
     "/water/start-water-sensor": {
       "post": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Start water sensor",
         "description": "",
         "operationId": "startWater",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -125,16 +101,11 @@
         }
       },
       "get": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Get start water sensor",
         "description": "",
         "operationId": "getWaterSensor",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -154,20 +125,12 @@
     },
     "/water/stop-water-sensor": {
       "post": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Stop water sensor",
         "description": "",
         "operationId": "stopWater",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -186,16 +149,11 @@
         }
       },
       "get": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Get stop water sensor",
         "description": "",
         "operationId": "getWaterSensorStop",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -215,20 +173,12 @@
     },
     "/water/get-water-level": {
       "post": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Water level",
         "description": "",
         "operationId": "levelWater",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -247,16 +197,11 @@
         }
       },
       "get": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Get water level",
         "description": "",
         "operationId": "getWaterLevel",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -276,20 +221,12 @@
     },
     "/water/make-water-empty": {
       "post": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Water empty",
         "description": "",
         "operationId": "emptyWater",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -308,16 +245,11 @@
         }
       },
       "get": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Get water empty",
         "description": "",
         "operationId": "getWaterEmpty",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -337,20 +269,12 @@
     },
     "/water/push-water-manual": {
       "post": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Push water manual",
         "description": "",
         "operationId": "manualWater",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -369,16 +293,11 @@
         }
       },
       "get": {
-        "tags": [
-          "water"
-        ],
+        "tags": ["water"],
         "summary": "Get water push",
         "description": "",
         "operationId": "getWaterPush",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -398,20 +317,12 @@
     },
     "/get-temperature": {
       "post": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Add a new temperature",
         "description": "",
         "operationId": "addTemperature",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -430,16 +341,11 @@
         }
       },
       "get": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Find temperature",
         "description": "",
         "operationId": "getTemperature",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -459,20 +365,12 @@
     },
     "/start-thermometer": {
       "post": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Start thermometer",
         "description": "",
         "operationId": "startThermometer",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -491,16 +389,11 @@
         }
       },
       "get": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Get start temperature",
         "description": "",
         "operationId": "getThermometerStart",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -520,20 +413,12 @@
     },
     "/stop-thermometer": {
       "post": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Stop thermometer",
         "description": "",
         "operationId": "stopThermometer",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -552,16 +437,11 @@
         }
       },
       "get": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Get stop temperature",
         "description": "",
         "operationId": "getThermometerStop",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -581,20 +461,12 @@
     },
     "/get-current-temperature": {
       "post": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Current temperature",
         "description": "",
         "operationId": "currentTemperature",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -613,16 +485,11 @@
         }
       },
       "get": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Get current temperature",
         "description": "",
         "operationId": "getCurrentTemperature",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -642,20 +509,12 @@
     },
     "/set-current-temperature": {
       "post": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Set current temperature",
         "description": "",
         "operationId": "setCurrentTemperature",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -674,16 +533,11 @@
         }
       },
       "get": {
-        "tags": [
-          "environment"
-        ],
+        "tags": ["environment"],
         "summary": "Get set current temperature",
         "description": "",
         "operationId": "getSetCurrentTemperature",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -703,20 +557,12 @@
     },
     "/food": {
       "post": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Add a new food",
         "description": "",
         "operationId": "addFood",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -735,16 +581,11 @@
         }
       },
       "get": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Find food",
         "description": "",
         "operationId": "getFood",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -764,20 +605,12 @@
     },
     "/food/start-food-sensor": {
       "post": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Start water sensor",
         "description": "",
         "operationId": "startFood",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -796,16 +629,11 @@
         }
       },
       "get": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Get start water sensor",
         "description": "",
         "operationId": "getFoodSensor",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -825,20 +653,12 @@
     },
     "/food/stop-food-sensor": {
       "post": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Stop food sensor",
         "description": "",
         "operationId": "stopFood",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -857,16 +677,11 @@
         }
       },
       "get": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Get stop food sensor",
         "description": "",
         "operationId": "getFoodSensorStop",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -886,20 +701,12 @@
     },
     "/food/get-food-level": {
       "post": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Level food",
         "description": "",
         "operationId": "levelFood",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -918,16 +725,11 @@
         }
       },
       "get": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Get level food",
         "description": "",
         "operationId": "getLevelFoodSensor",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -947,20 +749,12 @@
     },
     "/food/make-food-empty": {
       "post": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Empty food",
         "description": "",
         "operationId": "emptyFood",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -979,16 +773,11 @@
         }
       },
       "get": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Get empty food",
         "description": "",
         "operationId": "getEmptyFood",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -1008,20 +797,12 @@
     },
     "/food/push-food-manual": {
       "post": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Push food manual",
         "description": "",
         "operationId": "pushFood",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -1040,16 +821,11 @@
         }
       },
       "get": {
-        "tags": [
-          "food"
-        ],
+        "tags": ["food"],
         "summary": "Get push food manual",
         "description": "",
         "operationId": "getPushFood",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
+        "produces": ["application/xml", "application/json"],
         "parameters": [],
         "responses": {
           "200": {

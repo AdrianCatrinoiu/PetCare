@@ -14,7 +14,7 @@ def addInDb(feedLevel, feedingType,DB):
     DB.addInTable(feedingType,feedLevel)
 
 class ButtonForFeeding:
-    def __init__(self, feedingPush, feedingTimer, bellTimer, feedingType):
+    def __init__(self, feedingType, feedingPush, feedingTimer, bellTimer, test = False):
         """
             feedingPush -> int, a value between 0 and 100 to let water or food in bowl
             feedingTimer -> set a value in seconds for feeding interval
@@ -31,6 +31,7 @@ class ButtonForFeeding:
         self.__feedingPush = feedingPush
         self.__feedingTimer = feedingTimer
         self.__isActive = False
+        self.__test = test
 
     def __validateData(self,feedingPush,feedingTimer,bellTimer):
         if feedingPush <= 0:
@@ -59,8 +60,8 @@ class ButtonForFeeding:
         else:
             self.__feedingLevel = self.__maxfeedingLevel
             self.__isActive = False
-        
-        addInDb(self.__feedingLevel,self.__feedingType,self.DB)
+        if not self.__test:
+            addInDb(self.__feedingLevel,self.__feedingType,self.DB)
         self.__bellButton.startSinging()
     
     def getFeedingLevel(self):
@@ -86,7 +87,8 @@ class ButtonForFeeding:
     
     def makeFeedingEmpty(self):
         self.__feedingLevel = 0
-        addInDb(0,self.__feedingType,self.DB)
+        if not self.__test:
+            addInDb(0,self.__feedingType,self.DB)
     
     def pushManual(self):
         isActive = self.__isActive

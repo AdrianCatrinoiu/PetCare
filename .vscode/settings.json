@@ -4,5 +4,6 @@
     "./BE-Flask/ButtonForFeeding",
     "./BE-Flask/ButtonForThermometer",
     "./BE-Flask/TimerForSleeping"
-  ]
+  ],
+  "python.linting.enabled": false
 }
